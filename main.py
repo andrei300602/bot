@@ -28,7 +28,7 @@ class OrderState(StatesGroup):
     payment_confirmation = State()
 
 # Перевірка робочого часу
-def is_working_hours(start_hour=11, end_hour=17):
+def is_working_hours(start_hour=11, end_hour=15):
     now = datetime.now()
     start_time = now.replace(hour=start_hour, minute=0, second=0, microsecond=0)
     end_time = now.replace(hour=end_hour, minute=0, second=0, microsecond=0)
