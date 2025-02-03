@@ -106,12 +106,10 @@ async def select_location(message: Message, state: FSMContext):
 
     from aiogram.types import FSInputFile
 
-    # Відправка меню (фото з папки "menu")
-    menu_folder = "menu"  # Папка, де зберігаються фото меню
     for file_name in os.listdir(menu_folder):
-        if file_name.endswith(('.png', '.jpg', '.jpeg')):
+        if file_name.endswith((".png", ".jpg", ".jpeg")):
             photo_path = os.path.join(menu_folder, file_name)
-            photo = FSInputFile(photo_path)  # Використання FSInputFile для передачі фото
+            photo = FSInputFile(photo_path)
             await message.answer_photo(photo)
 
     await message.answer("Введіть текстом, що бажаєте замовити:")
