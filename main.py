@@ -1,4 +1,5 @@
 import os
+from dotenv import load_dotenv  # Додано для завантаження .env файлу
 from aiogram import Bot, Dispatcher, types, F
 from aiogram.types import Message, ReplyKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton
 from aiogram.filters import Command
@@ -8,8 +9,13 @@ from aiogram.fsm.storage.memory import MemoryStorage
 from datetime import datetime, timedelta
 import asyncio
 
-# Ініціалізація бота та диспетчера
-bot = Bot(token="7417072887:AAGX25vnMZs9b5wf46JLH10BLTRcL23z0bc")
+# Завантаження змінних середовища з .env файлу
+load_dotenv()
+
+# Ініціалізація бота та диспетчера з використанням змінної середовища для токену
+bot = Bot(token=os.getenv("BOT_TOKEN"))  # Токен має бути збережений у змінних середовища
+
+# Ініціалізація диспетчера
 dp = Dispatcher(storage=MemoryStorage())
 
 # ID групи адміністраторів
