@@ -53,7 +53,8 @@ async def start_command(message: Message, state: FSMContext):
         await message.answer(
             "Упс, ви вже оформили замовлення сьогодні. Воно буде доставлено на ту дату, яку ви вказали.\n"
             "Якщо якісь дані в замовленні потребують уточнення, зверніться до менеджера Ideal Food Service.\n"
-            "Чекаємо на вас завтра!"
+            "Чекаємо на вас завтра! З 11 до 15"
+            "З любовʼю ваш Ideal Food Service"
         )
         return
 
