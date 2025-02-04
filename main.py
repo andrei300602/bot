@@ -53,7 +53,8 @@ async def start_command(message: Message, state: FSMContext):
         await message.answer(
             "Упс, ви вже оформили замовлення сьогодні. Воно буде доставлено на ту дату, яку ви вказали.\n"
             "Якщо якісь дані в замовленні потребують уточнення, зверніться до менеджера Ideal Food Service.\n"
-            "Чекаємо на вас завтра!"
+            "Чекаємо на вас завтра! З 11 до 15.\n"
+            "З люблвʼю ваш Ideal Food Service."
         )
         return
 
@@ -104,7 +105,7 @@ async def select_location(message: Message, state: FSMContext):
     await message.answer("Ознайомтеся з нашим меню:", reply_markup=ReplyKeyboardRemove())
 
     # Відправка меню (фото з папки "menu")
-    menu_folder = "menu"  # Папка, де зберігаються фото меню
+    menu_folder = "/Users/andrii/PycharmProjects/PythonProject/menu" # Папка, де зберігаються фото меню
     if not os.path.exists(menu_folder) or not os.listdir(menu_folder):
         await message.answer("Наразі меню недоступне. Спробуйте пізніше.")
         await state.clear()
@@ -161,7 +162,14 @@ async def payment_confirmation(message: Message, state: FSMContext):
     )
     await bot.send_photo(chat_id=ADMIN_GROUP_ID, photo=photo_file_id)
 
-    await message.answer("Ваше замовлення успішно прийняте! Дякуємо!")
+    # Створення клавіатури з кнопкою "Розпочати"
+    start_keyboard = ReplyKeyboardMarkup(
+        keyboard=[[KeyboardButton(text="/start")]],
+        resize_keyboard=True,
+        one_time_keyboard=True
+    )
+
+    await message.answer("Ваше замовлення успішно прийняте! Дякуємо!", reply_markup=start_keyboard)
     await state.clear()
 
 # Якщо користувач надсилає щось, окрім фото
